@@ -1,4 +1,5 @@
 const Reservation = require('../models/reservationModel')
+const axios = require('axios')
 
 exports.getReservations = async (req, res) => {
     const reservations = await Reservation.find();
@@ -30,8 +31,28 @@ exports.addReservation = (req, res) => {
         end: req.body.end,
     })
 
+    
     reservation.save().then(reservation => {
-        res.status(200).send(reservation)
+        if (req.body.fromClient && req.body.fromClient === "fromClient") {
+            try {
+                let computer_uri = 'http://localhost:1234/api/computers'
+                let user_uri = 'http://localhost:1234/api/users'
+                let reservation_uri = 'http://localhost:1234/api/reservations'
+                axios.all([
+                    axios.get(computer_uri),
+                    axios.get(user_uri),
+                    axios.get(reservation_uri)
+                ])
+                    .then(axios.spread((computers, users, reservations) => {
+                        res.render('index', { computers: computers.data, users: users.data, reservations: reservations.data })
+                    }));
+
+            } catch (error) {
+                res.send({ message: "an error occured" })
+            }
+        } else {
+            res.status(200).send(reservation)
+        }
     }).catch(error => {
         res.status(500).send(`Cannot save reservation to database, error : ${error}`)
     });

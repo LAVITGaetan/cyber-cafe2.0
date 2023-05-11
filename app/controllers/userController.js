@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const axios = require('axios')
 
 exports.getUsers = async (req, res) => {
     const users = await User.find();
@@ -28,7 +29,26 @@ exports.addUser = (req, res) => {
     })
 
     user.save().then(user => {
-        res.status(200).send(user)
+        if (req.body.fromClient && req.body.fromClient === "fromClient") {
+            try {
+                let computer_uri = 'http://localhost:1234/api/computers'
+                let user_uri = 'http://localhost:1234/api/users'
+                let reservation_uri = 'http://localhost:1234/api/reservations'
+                axios.all([
+                    axios.get(computer_uri),
+                    axios.get(user_uri),
+                    axios.get(reservation_uri)
+                ])
+                    .then(axios.spread((computers, users, reservations) => {
+                        res.render('index', { computers: computers.data, users: users.data, reservations: reservations.data })
+                    }));
+
+            } catch (error) {
+                res.send({ message: "an error occured" })
+            }
+        } else {
+            res.status(200).send(user)
+        }
     }).catch(error => {
         res.status(500).send(`Cannot save user to database, error : ${error}`)
     });

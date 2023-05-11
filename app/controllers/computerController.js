@@ -29,26 +29,26 @@ exports.addComputer = (req, res) => {
     })
 
     computer.save().then(computer => {
-    if(req.body.fromClient && req.body.fromClient === "fromClient") {
-        try {
-            let computer_uri = 'http://localhost:1234/api/computers'
-            let user_uri = 'http://localhost:1234/api/users'
-            let reservation_uri = 'http://localhost:1234/api/reservations'
-            axios.all([
-                axios.get(computer_uri), 
-                axios.get(user_uri),
-                axios.get(reservation_uri)
-              ])
-              .then(axios.spread((computers, users, reservations) => {
-                res.render('index', { computers: computers.data, users: users.data, reservations: reservations.data })
-              }));
-            
-        } catch (error) {
-            res.send({ message: "an error occured" })
+        if (req.body.fromClient && req.body.fromClient === "fromClient") {
+            try {
+                let computer_uri = 'http://localhost:1234/api/computers'
+                let user_uri = 'http://localhost:1234/api/users'
+                let reservation_uri = 'http://localhost:1234/api/reservations'
+                axios.all([
+                    axios.get(computer_uri),
+                    axios.get(user_uri),
+                    axios.get(reservation_uri)
+                ])
+                    .then(axios.spread((computers, users, reservations) => {
+                        res.render('index', { computers: computers.data, users: users.data, reservations: reservations.data })
+                    }));
+
+            } catch (error) {
+                res.send({ message: "an error occured" })
+            }
+        } else {
+            res.status(200).send(computer)
         }
-    } else {
-        res.status(200).send(computer)
-    }
     }).catch(error => {
         res.status(500).send(`Cannot save computer to database, error : ${error}`)
     });
