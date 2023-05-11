@@ -254,7 +254,8 @@ body {
 }
 
 
-.modal-computer_title,.modal-reservation_title,
+.modal-computer_title,
+.modal-reservation_title,
 .modal-user_title {
     font-weight: 700;
     font-size: 22px;
@@ -262,7 +263,6 @@ body {
     text-align: center;
     margin-bottom: 20px;
 }
-
 
 .modal-computer_close,
 .modal-user_close,

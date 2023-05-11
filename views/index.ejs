@@ -57,14 +57,15 @@
                 <% reservations.forEach(reservation=> { %>
                     <tr class="table-row">
                         <td class="table-text">
-                            <%= computers.find(computer => computer._id === reservation.ID_computer).label %>
+                            <%= computers.find(computer=> computer._id === reservation.ID_computer).label %>
                         </td>
                         <td class="table-text">
                             <%= reservation.date.slice(0, 10) %>
                         </td>
-                        <td class="table-text"><%= users.find(user => user._id === reservation.ID_user).name%>
-                            
-                         </td>
+                        <td class="table-text">
+                            <%= users.find(user=> user._id === reservation.ID_user).name%>
+
+                        </td>
                         <td class="table-text">
                             <%= reservation.start %>
                         </td>
@@ -101,45 +102,43 @@
                     </div>
                 </div>
                 <% }) %>
-
         </div>
     </div>
-
-
 
     <!-- CREATE RESERVATION -->
     <div class="modal-reservation_box">
         <div class="modal-reservation">
             <div class="modal-reservation_title">Ajouter une réservation</div>
-            
-    <form class="modal-reservation_form" action="http://localhost:1234/api/reservations" method="post">
-        <label class="reservation-form_label1 modal-form_label" for="reservation-computer">Poste</label>
-        <select class="reservation-form_input1 modal-form_input" name="ID_computer" id="reservation-computer">
-            <% computers.forEach(computer=> { %>
-                <option value="<%=computer._id%>">
-                    <%=computer.label%>
-                </option>
-                <% }) %>
-        </select>
-        <label class="reservation-form_label2 modal-form_label" for="reservation-date">Utilsateur</label>
-        <select class="reservation-form_input2 modal-form_input" name="ID_user" id="reservation-user">
-            <% users.forEach(user=> { %>
-                <option value="<%=user._id%>">
-                    <%=user.name%>
-                </option>
-                <% }) %>
-        </select>
-        <label class="reservation-form_label3 modal-form_label" for="reservation-date">Date de réservation</label>
-        <input class="reservation-form_input3 modal-form_input" type="date" name="date" id="reservation-date">
-        <label class="reservation-form_label4 modal-form_label" for="reservation-start">Début de session</label>
-        <input class="reservation-form_input4 modal-form_input" type="time" name="start" id="reservation-start">
-        <label class="reservation-form_label5 modal-form_label" for="reservation-end">Fin de session</label>
-        <input class="reservation-form_input5 modal-form_input" type="time" name="end" id="reservation-end">
-        <div class="reservation-form_actions">
-            <div class="reservation-form_cancel">Annuler</div>
-            <input class="reservation-form_submit" type="submit" value="Créer">
-        </div>
-    </form>
+
+            <form class="modal-reservation_form" action="http://localhost:1234/api/reservations" method="post">
+                <label class="reservation-form_label1 modal-form_label" for="reservation-computer">Poste</label>
+                <select class="reservation-form_input1 modal-form_input" name="ID_computer" id="reservation-computer">
+                    <% computers.forEach(computer=> { %>
+                        <option value="<%=computer._id%>">
+                            <%=computer.label%>
+                        </option>
+                        <% }) %>
+                </select>
+                <label class="reservation-form_label2 modal-form_label" for="reservation-date">Utilsateur</label>
+                <select class="reservation-form_input2 modal-form_input" name="ID_user" id="reservation-user">
+                    <% users.forEach(user=> { %>
+                        <option value="<%=user._id%>">
+                            <%=user.name%>
+                        </option>
+                        <% }) %>
+                </select>
+                <label class="reservation-form_label3 modal-form_label" for="reservation-date">Date de
+                    réservation</label>
+                <input class="reservation-form_input3 modal-form_input" type="date" name="date" id="reservation-date">
+                <label class="reservation-form_label4 modal-form_label" for="reservation-start">Début de session</label>
+                <input class="reservation-form_input4 modal-form_input" type="time" name="start" id="reservation-start">
+                <label class="reservation-form_label5 modal-form_label" for="reservation-end">Fin de session</label>
+                <input class="reservation-form_input5 modal-form_input" type="time" name="end" id="reservation-end">
+                <div class="reservation-form_actions">
+                    <div class="reservation-form_cancel">Annuler</div>
+                    <input class="reservation-form_submit" type="submit" value="Créer">
+                </div>
+            </form>
             <div class="modal-reservation_close" onclick="closeModal('reservation')">X</div>
         </div>
     </div>
@@ -160,6 +159,7 @@
                     <div class="computer-form_cancel">Annuler</div>
                     <input class="computer-form_submit" type="submit" value="Créer">
                 </div>
+                <input type="hidden" value="fromClient" name="fromClient">
             </form>
             <div class="modal-computer_close" onclick="closeModal('computer')">X</div>
         </div>
