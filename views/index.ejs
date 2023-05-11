@@ -16,91 +16,28 @@
 <body>
 
     <!-- UTILISATEUR SECTION -->
-
+    <h1></h1>
     <!-- COMPUTER SECTION -->
     <div class="section-computer">
         <h2 class="section-title">Liste des ordinateurs</h2>
         <div class="computer-container">
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 1</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
+            <% computers.forEach(computer=> { %>
+
+                <div class="computer-card">
+                    <div class="computer-card_icon icon-gaming"></div>
+                    <h3 class="computer-card_label">
+                        <%=computer.label%>
+                    </h3>
+                    <div class="computer-card_action">
+                        <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
+                    </div>
+                    <h4 class="computer-card_type">
+                        <%=computer.type%>
+                    </h4>
                 </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 2</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-etudes"></div>
-                <h3 class="computer-card_label">Poste 3</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Etudes</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-etudes"></div>
-                <h3 class="computer-card_label">Poste 4</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Etudes</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 5</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 6</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 7</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-etudes"></div>
-                <h3 class="computer-card_label">Poste 8</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Etudes</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-etudes"></div>
-                <h3 class="computer-card_label">Poste 9</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Etudes</h4>
-            </div>
-            <div class="computer-card">
-                <div class="computer-card_icon icon-gaming"></div>
-                <h3 class="computer-card_label">Poste 10</h3>
-                <div class="computer-card_action">
-                    <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
-                </div>
-                <h4 class="computer-card_type">Gaming</h4>
-            </div>
+                <% }) %>
+
+
         </div>
     </div>
 
@@ -120,67 +57,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-row">
-                    <td class="table-text">Poste 1</td>
-                    <td class="table-text">Gaming</td>
-                    <td class="table-text">Gaetan Lavit</td>
-                    <td class="table-text">20h10</td>
-                    <td class="table-text">20h40</td>
-                    <td class="table-actions">
-                        <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
-                        </div>
-                        <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
-                                width="12px" height="12px" alt="delete"></div>
-                    </td>
-                </tr>
-                <tr class="table-row">
-                    <td class="table-text">Poste 2</td>
-                    <td class="table-text">Gaming</td>
-                    <td class="table-text">Tom Jedusor</td>
-                    <td class="table-text">20h10</td>
-                    <td class="table-text">20h40</td>
-                    <td class="table-actions">
-                        <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
-                        </div>
-                        <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
-                                width="12px" height="12px" alt="delete"></div>
-                    </td>
-                </tr>
-                <tr class="table-row">
-                    <td class="table-text">Poste 3</td>
-                    <td class="table-text">Gaming</td>
-                    <td class="table-text">Edrick Lewer</td>
-                    <td class="table-text">20h10</td>
-                    <td class="table-text">20h40</td>
-                    <td class="table-actions">
-                        <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
-                        </div>
-                        <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
-                                width="12px" height="12px" alt="delete"></div>
-                    </td>
-                </tr>
-                <tr class="table-row">
-                    <td class="table-text">Poste 4</td>
-                    <td class="table-text">Gaming</td>
-                    <td class="table-text">Jonathan Joestar</td>
-                    <td class="table-text">20h10</td>
-                    <td class="table-text">20h40</td>
-                    <td class="table-actions">
-                        <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
-                        </div>
-                        <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
-                                width="12px" height="12px" alt="delete"></div>
-                    </td>
-                </tr>
+                <% reservations.forEach(reservation=> { %>
+                    <tr class="table-row">
+                        <td class="table-text"><%= reservation.ID_computer %></td>
+                        <td class="table-text">Gaming</td>
+                        <td class="table-text">Tom Jedusor</td>
+                        <td class="table-text"><%= reservation.start %></td>
+                        <td class="table-text"><%= reservation.end %></td>
+                        <td class="table-actions">
+                            <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
+                            </div>
+                            <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
+                                    width="12px" height="12px" alt="delete"></div>
+                        </td>
+                    </tr>
+                    <% }) %>
             </tbody>
         </table>
     </div>
     <div class="section-utilisateur">
         <h2 class="section-title">Liste des utilisateurs</h2>
         <div class="utilisateur-container">
+            <% users.forEach(user=> { %>
             <div class="utilisateur-card">
                 <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
+                <h3 class="utilisateur-card_label"><%= user.name %></h3>
                 <div class="utilisateur-card_actions">
                     <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
                             alt="add"></div>
@@ -188,106 +89,8 @@
                             alt="delete" style="transform:rotate(45deg)"></div>
                 </div>
             </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">John Doe</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status"></div>
-                <h3 class="utilisateur-card_label">Gaetan Lavit</h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
-                </div>
-            </div>
+            <% }) %>
+
         </div>
 
     </div>

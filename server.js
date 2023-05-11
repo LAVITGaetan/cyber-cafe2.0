@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const computerRoutes = require('./app/routes/computer')
 const userRoutes = require('./app/routes/user')
+const reservationRoutes = require('./app/routes/reservation')
+const Services = require('./app/services/render')
 
 const app = express();
 app.use(bodyparser.urlencoded({ extended: false }))
@@ -26,13 +28,12 @@ app.get('/', (req, res) => {
     res.send('Server is running')
 })
 
-app.get('/index', (req, res) => {
-    res.render('index', { title: 'test' })
-})
+app.use('/index', Services.index)
 
 
 app.use('/api/computers', computerRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/reservations', reservationRoutes)
 
 
 mongoose.set('strictQuery', false);
