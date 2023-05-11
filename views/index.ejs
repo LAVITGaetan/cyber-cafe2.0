@@ -15,8 +15,6 @@
 
 <body>
 
-    <!-- UTILISATEUR SECTION -->
-    <h1></h1>
     <!-- COMPUTER SECTION -->
     <div class="section-computer">
         <h2 class="section-title">Liste des ordinateurs</h2>
@@ -42,7 +40,6 @@
     </div>
 
     <!-- RESERVATION SECTION -->
-
     <div class="section-reservation">
         <h2 class="section-title">Réservations</h2>
         <table class="reservation-table">
@@ -59,11 +56,17 @@
             <tbody>
                 <% reservations.forEach(reservation=> { %>
                     <tr class="table-row">
-                        <td class="table-text"><%= reservation.ID_computer %></td>
+                        <td class="table-text">
+                            <%= reservation.ID_computer %>
+                        </td>
                         <td class="table-text">Gaming</td>
                         <td class="table-text">Tom Jedusor</td>
-                        <td class="table-text"><%= reservation.start %></td>
-                        <td class="table-text"><%= reservation.end %></td>
+                        <td class="table-text">
+                            <%= reservation.start %>
+                        </td>
+                        <td class="table-text">
+                            <%= reservation.end %>
+                        </td>
                         <td class="table-actions">
                             <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
                             </div>
@@ -75,25 +78,75 @@
             </tbody>
         </table>
     </div>
+
+    <!-- UTILISATEUR SECTION -->
     <div class="section-utilisateur">
         <h2 class="section-title">Liste des utilisateurs</h2>
         <div class="utilisateur-container">
             <% users.forEach(user=> { %>
-            <div class="utilisateur-card">
-                <div class="utilisateur-card_status active"></div>
-                <h3 class="utilisateur-card_label"><%= user.name %></h3>
-                <div class="utilisateur-card_actions">
-                    <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="add"></div>
-                    <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                            alt="delete" style="transform:rotate(45deg)"></div>
+                <div class="utilisateur-card">
+                    <div class="utilisateur-card_status active"></div>
+                    <h3 class="utilisateur-card_label">
+                        <%= user.name %>
+                    </h3>
+                    <div class="utilisateur-card_actions">
+                        <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
+                                alt="add"></div>
+                        <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
+                                alt="delete" style="transform:rotate(45deg)"></div>
+                    </div>
                 </div>
-            </div>
-            <% }) %>
+                <% }) %>
 
         </div>
-
     </div>
+    <!-- CREATE COMPUTER -->
+    <form action="http://localhost:1234/api/computers" method="post">
+        <label for="computer-label">Nom du poste</label>
+        <input type="text" name="label" placeholder="Poste X" id="computer-label">
+        <label for="computer-type">Type du poste</label>
+        <select name="type" id="computer-type">
+            <option value="gaming">Gaming</option>
+            <option value="etude">Etudes</option>
+        </select>
+        <input type="submit" value="Créer un poste">
+    </form>
+
+    <!-- CREATE USER -->
+    <form action="http://localhost:1234/api/users" method="post">
+        <label for="user-name">Nom de l'utilisateur</label>
+        <input type="text" name="name" placeholder="John DOE" id="user-name">
+        <label for="user-email">Email de l'utilisateur</label>
+        <input type="text" name="email" placeholder="john.doe@gmail.com" id="user-email">
+        <input type="submit" value="Créer un utilsateur">
+    </form>
+
+    <!-- CREATE RESERVATION -->
+    <form action="http://localhost:1234/api/reservations" method="post">
+        <label for="reservation-computer">Poste</label>
+        <select name="ID_computer" id="reservation-computer">
+            <% computers.forEach(computer=> { %>
+                <option value="<%=computer._id%>">
+                    <%=computer.label%>
+                </option>
+                <% }) %>
+        </select>
+        <label for="reservation-date">Utilsateur</label>
+        <select name="ID_user" id="reservation-user">
+            <% users.forEach(user=> { %>
+                <option value="<%=user._id%>">
+                    <%=user.name%>
+                </option>
+                <% }) %>
+        </select>
+        <label for="reservation-date">Date de réservation</label>
+        <input type="date" name="date" id="reservation-date">
+        <label for="reservation-start">Début de session</label>
+        <input type="time" name="start" id="reservation-start">
+        <label for="reservation-end">Début de session</label>
+        <input type="time" name="end" id="reservation-end">
+        <input type="submit" value="Créer une réservation">
+    </form>
 </body>
 
 </html>
