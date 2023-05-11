@@ -206,3 +206,151 @@ body {
     height: 20px;
     cursor: pointer;
 }
+
+.modal,
+.modal-computer_box,
+.modal-user_box,
+.modal-reservation_box {
+    position: fixed;
+    top: 0;
+    padding: 25vh 25vw;
+    left: 0;
+    background-color: #050d1a86;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    width: 100vw;
+    display: none;
+    height: 100vh;
+}
+
+.modal-computer,
+.modal-user {
+    width: 100%;
+    padding: 24px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    border-radius: 2px;
+    position: relative;
+}
+
+
+.modal-reservation {
+    width: 100%;
+    padding: 24px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px auto auto auto auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    border-radius: 2px;
+    position: relative;
+}
+
+
+.modal-computer_title,.modal-reservation_title,
+.modal-user_title {
+    font-weight: 700;
+    font-size: 22px;
+    color: #050d1a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.modal-computer_close,
+.modal-user_close,
+.modal-reservation_close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    border-radius: 2px;
+    height: 24px;
+    background-color: #050d1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-computer_form,
+.modal-user_form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-column-gap: 0px;
+    grid-row-gap: 8px;
+}
+
+.modal-reservation_form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, auto);
+    grid-column-gap: 0px;
+    grid-row-gap: 8px;
+}
+
+.computer-form_actions,
+.user-form_actions,
+.reservation-form_actions
+ {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.computer-form_cancel,
+.user-form_cancel,
+.reservation-form_cancel {
+    padding: 12px 16px;
+    background-color: #e4edf0;
+    color: #050d1a;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    margin-right: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.computer-form_submit,
+.user-form_submit,
+.reservation-form_submit {
+    padding: 12px 16px;
+    background-color: #4d5fc6;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    outline: none;
+    border: none;
+    font-family: Lexend;
+    cursor: pointer;
+    margin-left: 12px;
+    border-radius: 2px;
+}
+
+.modal-form_label {
+    font-size: 15px;
+    color: #050d1a;
+    font-weight: 500;
+}
+
+.modal-form_input {
+    height: 40px;
+    padding: 0 6px;
+    border: 2px solid #e4edf0;
+    font-family: Lexend;
+    color: #394250;
+    margin-bottom: 12px;
+}

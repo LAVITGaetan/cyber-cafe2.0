@@ -46,7 +46,7 @@
             <thead class="table-head">
                 <tr>
                     <th class="table-header">Nom du poste</th>
-                    <th class="table-header">Type</th>
+                    <th class="table-header">Date</th>
                     <th class="table-header">Utilisateur</th>
                     <th class="table-header">Début de session</th>
                     <th class="table-header">Fin de session</th>
@@ -57,10 +57,14 @@
                 <% reservations.forEach(reservation=> { %>
                     <tr class="table-row">
                         <td class="table-text">
-                            <%= reservation.ID_computer %>
+                            <%= computers.find(computer => computer._id === reservation.ID_computer).label %>
                         </td>
-                        <td class="table-text">Gaming</td>
-                        <td class="table-text">Tom Jedusor</td>
+                        <td class="table-text">
+                            <%= reservation.date.slice(0, 10) %>
+                        </td>
+                        <td class="table-text"><%= users.find(user => user._id === reservation.ID_user).name%>
+                            
+                         </td>
                         <td class="table-text">
                             <%= reservation.start %>
                         </td>
@@ -100,53 +104,92 @@
 
         </div>
     </div>
-    <!-- CREATE COMPUTER -->
-    <form action="http://localhost:1234/api/computers" method="post">
-        <label for="computer-label">Nom du poste</label>
-        <input type="text" name="label" placeholder="Poste X" id="computer-label">
-        <label for="computer-type">Type du poste</label>
-        <select name="type" id="computer-type">
-            <option value="gaming">Gaming</option>
-            <option value="etude">Etudes</option>
-        </select>
-        <input type="submit" value="Créer un poste">
-    </form>
 
-    <!-- CREATE USER -->
-    <form action="http://localhost:1234/api/users" method="post">
-        <label for="user-name">Nom de l'utilisateur</label>
-        <input type="text" name="name" placeholder="John DOE" id="user-name">
-        <label for="user-email">Email de l'utilisateur</label>
-        <input type="text" name="email" placeholder="john.doe@gmail.com" id="user-email">
-        <input type="submit" value="Créer un utilsateur">
-    </form>
+
 
     <!-- CREATE RESERVATION -->
-    <form action="http://localhost:1234/api/reservations" method="post">
-        <label for="reservation-computer">Poste</label>
-        <select name="ID_computer" id="reservation-computer">
+    <div class="modal-reservation_box">
+        <div class="modal-reservation">
+            <div class="modal-reservation_title">Ajouter une réservation</div>
+            
+    <form class="modal-reservation_form" action="http://localhost:1234/api/reservations" method="post">
+        <label class="reservation-form_label1 modal-form_label" for="reservation-computer">Poste</label>
+        <select class="reservation-form_input1 modal-form_input" name="ID_computer" id="reservation-computer">
             <% computers.forEach(computer=> { %>
                 <option value="<%=computer._id%>">
                     <%=computer.label%>
                 </option>
                 <% }) %>
         </select>
-        <label for="reservation-date">Utilsateur</label>
-        <select name="ID_user" id="reservation-user">
+        <label class="reservation-form_label2 modal-form_label" for="reservation-date">Utilsateur</label>
+        <select class="reservation-form_input2 modal-form_input" name="ID_user" id="reservation-user">
             <% users.forEach(user=> { %>
                 <option value="<%=user._id%>">
                     <%=user.name%>
                 </option>
                 <% }) %>
         </select>
-        <label for="reservation-date">Date de réservation</label>
-        <input type="date" name="date" id="reservation-date">
-        <label for="reservation-start">Début de session</label>
-        <input type="time" name="start" id="reservation-start">
-        <label for="reservation-end">Début de session</label>
-        <input type="time" name="end" id="reservation-end">
-        <input type="submit" value="Créer une réservation">
+        <label class="reservation-form_label3 modal-form_label" for="reservation-date">Date de réservation</label>
+        <input class="reservation-form_input3 modal-form_input" type="date" name="date" id="reservation-date">
+        <label class="reservation-form_label4 modal-form_label" for="reservation-start">Début de session</label>
+        <input class="reservation-form_input4 modal-form_input" type="time" name="start" id="reservation-start">
+        <label class="reservation-form_label5 modal-form_label" for="reservation-end">Fin de session</label>
+        <input class="reservation-form_input5 modal-form_input" type="time" name="end" id="reservation-end">
+        <div class="reservation-form_actions">
+            <div class="reservation-form_cancel">Annuler</div>
+            <input class="reservation-form_submit" type="submit" value="Créer">
+        </div>
     </form>
+            <div class="modal-reservation_close" onclick="closeModal('reservation')">X</div>
+        </div>
+    </div>
+    <!-- CREATE COMPUTER -->
+    <div class="modal-computer_box">
+        <div class="modal-computer">
+            <div class="modal-computer_title">Ajouter un poste</div>
+            <form class="modal-computer_form" action="http://localhost:1234/api/computers" method="post">
+                <label class="computer-form_label1 modal-form_label" for="computer-label">Nom du poste</label>
+                <input class="computer-form_input1 modal-form_input" type="text" name="label" placeholder="Poste X"
+                    id="computer-label">
+                <label class="computer-form_label2 modal-form_label" for="computer-type">Type du poste</label>
+                <select class="computer-form_input2 modal-form_input" name="type" id="computer-type">
+                    <option value="gaming">Gaming</option>
+                    <option value="etude">Etudes</option>
+                </select>
+                <div class="computer-form_actions">
+                    <div class="computer-form_cancel">Annuler</div>
+                    <input class="computer-form_submit" type="submit" value="Créer">
+                </div>
+            </form>
+            <div class="modal-computer_close" onclick="closeModal('computer')">X</div>
+        </div>
+    </div>
+
+    <!-- CREATE USER -->
+    <div class="modal-user_box">
+        <div class="modal-user">
+            <div class="modal-user_title">Ajouter un utilisateur</div>
+            <form class="modal-user_form" action="http://localhost:1234/api/users" method="post">
+                <label class="user-form_label1 modal-form_label" for="user-name">Prénom et Nom</label>
+                <input class="user-form_input1 modal-form_input" type="text" name="name" placeholder="Poste X"
+                    id="user-name">
+                <label class="user-form_label2 modal-form_label" for="user-email">Adresse Email</label>
+                <input type="email" class="user-form_input2 modal-form_input" name="email" id="user-email">
+                <div class="user-form_actions">
+                    <input class="user-form_submit" type="submit" value="Créer">
+                    <div class="user-form_cancel">Annuler</div>
+
+                </div>
+            </form>
+            <div class="modal-user_close" onclick="closeModal('user')">X</div>
+        </div>
+    </div>
+    <script>
+        function closeModal(ressource) {
+            let modal = document.getElementsByClassName(`modal-${ressource}`)[0]
+            modal.parentNode.style.display = 'none'
+        }
+    </script>
 </body>
 
 </html>
