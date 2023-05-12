@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const Reservation = require('../models/reservationModel')
 const axios = require('axios')
 
 exports.getUsers = async (req, res) => {
@@ -66,6 +67,7 @@ exports.editUser = async (req, res) => {
 
 exports.removeUser = async (req, res) => {
     const deletedUser = await User.findByIdAndRemove(req.params.id);
+    const deletedReservation = await Reservation.deleteMany({ID_user : req.params.id})
     if (!deletedUser) {
         res.status(404).send({ message: `Cannot delete user with id : ${req.params.id}` })
     } else {

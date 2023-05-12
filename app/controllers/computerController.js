@@ -1,4 +1,5 @@
 const Computer = require('../models/computerModel')
+const Reservation = require('../models/reservationModel')
 const axios = require('axios')
 
 exports.getComputers = async (req, res) => {
@@ -66,6 +67,7 @@ exports.editComputer = async (req, res) => {
 
 exports.removeComputer = async (req, res) => {
     const deletedComputer = await Computer.findByIdAndRemove(req.params.id);
+    const deletedReservation = await Reservation.deleteMany({ID_computer : req.params.id})
     if (!deletedComputer) {
         res.status(404).send({ message: `Cannot delete computer with id : ${req.params.id}` })
     } else {
