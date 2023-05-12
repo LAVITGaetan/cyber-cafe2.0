@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    <div class="add-ressource" onclick="addRessource('computer')">Ajouter un poste</div>
+    <div class="add-ressource" onclick="addRessource('user')">Ajouter un utilisateur</div>
+    <div class="add-ressource" onclick="addRessource('reservation')">Ajouter une réservation</div>
 
     <!-- COMPUTER SECTION -->
     <div class="section-computer">
@@ -97,7 +100,7 @@
                     <div class="utilisateur-card_actions">
                         <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
                                 alt="add"></div>
-                        <div class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
+                        <div onclick="deleteRessource('user', '<%=user._id%>')" class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
                                 alt="delete" style="transform:rotate(45deg)"></div>
                     </div>
                 </div>
@@ -143,6 +146,7 @@
             <div class="modal-reservation_close" onclick="closeModal('reservation')">X</div>
         </div>
     </div>
+    
     <!-- CREATE COMPUTER -->
     <div class="modal-computer_box">
         <div class="modal-computer">
@@ -172,10 +176,10 @@
             <div class="modal-user_title">Ajouter un utilisateur</div>
             <form class="modal-user_form" action="http://localhost:1234/api/users" method="post">
                 <label class="user-form_label1 modal-form_label" for="user-name">Prénom et Nom</label>
-                <input class="user-form_input1 modal-form_input" type="text" name="name" placeholder="Poste X"
+                <input class="user-form_input1 modal-form_input" type="text" name="name" placeholder="John DOE"
                     id="user-name">
                 <label class="user-form_label2 modal-form_label" for="user-email">Adresse Email</label>
-                <input type="email" class="user-form_input2 modal-form_input" name="email" id="user-email">
+                <input type="email" class="user-form_input2 modal-form_input" name="email" id="user-email" placeholder="johndoe@email.com">
                 <div class="user-form_actions">
                     <input class="user-form_submit" type="submit" value="Créer">
                     <div class="user-form_cancel">Annuler</div>
@@ -191,6 +195,22 @@
             let modal = document.getElementsByClassName(`modal-${ressource}`)[0]
             modal.parentNode.style.display = 'none'
         }
+
+        function addRessource(ressource) {
+            let modal = document.getElementsByClassName(`modal-${ressource}`)[0]
+            modal.parentNode.style.display = 'block'
+        }
+
+        function deleteRessource(ressource, id) {
+            let api_uri = `http://localhost:1234/api/${ressource}s/${id}`
+            try {
+                fetch(api_uri, {method : 'DELETE'})
+                .then(() => alert(`${ressource} supprimé`))
+            } catch (error) {
+                alert('error')
+            }
+        }
+
     </script>
 </body>
 
