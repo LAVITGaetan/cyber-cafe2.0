@@ -14,9 +14,36 @@
 </head>
 
 <body>
-    <div class="add-ressource" onclick="addRessource('computer')">Ajouter un poste</div>
+    <div class="landing-grid">
+        <div class="landing-navbar">
+            <div class="navbar-logo">
+                <img src="../img/icon-coffee2.png" width="32px" height="32px">
+            </div>
+            <div class="navbar-title">Cyber-Café</div>
+            <div class="navbar-container1"></div>
+            <div class="navbar-container2"></div>
+            <div class="navbar-container3"></div>
+            <div class="navbar-icon1">
+                <img src="../img/navbar-computer.png" width="24px" height="24px">
+
+            </div>
+            <div class="navbar-link1">Ordinateurs</div>
+            <div class="navbar-icon2">
+                <img src="../img/navbar-utilisateur.png" width="24px" height="24px">
+
+            </div>
+            <div class="navbar-link2">Utilisateurs</div>
+            <div class="navbar-icon3">
+                <img src="../img/navbar-reservation.png" width="24px" height="24px">
+
+            </div>
+            <div class="navbar-link3">Réservations</div>
+        </div>
+        <div class="landing-topbar"></div>
+        <div class="landing-content">
+    <!-- <div class="add-ressource" onclick="addRessource('computer')">Ajouter un poste</div>
     <div class="add-ressource" onclick="addRessource('user')">Ajouter un utilisateur</div>
-    <div class="add-ressource" onclick="addRessource('reservation')">Ajouter une réservation</div>
+    <div class="add-ressource" onclick="addRessource('reservation')">Ajouter une réservation</div> -->
 
     <!-- COMPUTER SECTION -->
     <div class="section-computer">
@@ -29,62 +56,16 @@
                     <h3 class="computer-card_label">
                         <%=computer.label%>
                     </h3>
-                    <div class="computer-card_action">
-                        <img src="../img/icon-add.png" width="10px" height="10px" alt="add">
+                    <div onclick="deleteRessource('computer', '<%=computer._id%>')" class="computer-card_delete">
+                        <img style="transform: rotate(45deg);" src="../img/icon-add.png" width="10px" height="10px"
+                            alt="delete">
                     </div>
                     <h4 class="computer-card_type">
                         <%=computer.type%>
                     </h4>
                 </div>
                 <% }) %>
-
-
         </div>
-    </div>
-
-    <!-- RESERVATION SECTION -->
-    <div class="section-reservation">
-        <h2 class="section-title">Réservations</h2>
-        <table class="reservation-table">
-            <thead class="table-head">
-                <tr>
-                    <th class="table-header">Nom du poste</th>
-                    <th class="table-header">Date</th>
-                    <th class="table-header">Utilisateur</th>
-                    <th class="table-header">Début de session</th>
-                    <th class="table-header">Fin de session</th>
-                    <th class="table-header">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% reservations.forEach(reservation=> { %>
-                    <tr class="table-row">
-                        <td class="table-text">
-                            <%= computers.find(computer=> computer._id === reservation.ID_computer).label %>
-                        </td>
-                        <td class="table-text">
-                            <%= reservation.date.slice(0, 10) %>
-                        </td>
-                        <td class="table-text">
-                            <%= users.find(user=> user._id === reservation.ID_user).name%>
-
-                        </td>
-                        <td class="table-text">
-                            <%= reservation.start %>
-                        </td>
-                        <td class="table-text">
-                            <%= reservation.end %>
-                        </td>
-                        <td class="table-actions">
-                            <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
-                            </div>
-                            <div class="table-delete"><img src="../img/icon-add.png" style="transform:rotate(45deg)"
-                                    width="12px" height="12px" alt="delete"></div>
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
     </div>
 
     <!-- UTILISATEUR SECTION -->
@@ -93,18 +74,111 @@
         <div class="utilisateur-container">
             <% users.forEach(user=> { %>
                 <div class="utilisateur-card">
-                    <div class="utilisateur-card_status active"></div>
-                    <h3 class="utilisateur-card_label">
+                    <h3 class="utilisateur-card_name">
                         <%= user.name %>
                     </h3>
-                    <div class="utilisateur-card_actions">
-                        <div class="utilisateur-card_add"><img src="../img/icon-add.png" width="10px" height="10px"
-                                alt="add"></div>
-                        <div onclick="deleteRessource('user', '<%=user._id%>')" class="utilisateur-card_delete"><img src="../img/icon-add.png" width="10px" height="10px"
-                                alt="delete" style="transform:rotate(45deg)"></div>
-                    </div>
+                    <h4 class="utilisateur-card_email">
+                        <%= user.email %>
+                    </h4>
+                    <div onclick="deleteRessource('user', '<%=user._id%>')" class="utilisateur-card_delete"><img
+                            src="../img/icon-add.png" width="10px" height="10px" alt="delete"
+                            style="transform:rotate(45deg)"></div>
                 </div>
                 <% }) %>
+
+        </div>
+    </div>
+
+    <!-- RESERVATION SECTION -->
+ <div class="section-reservation">
+    <h2 class="section-title">Réservations</h2>
+    <table class="reservation-table">
+        <thead class="table-head">
+            <tr>
+                <th class="table-header">Nom du poste</th>
+                <th class="table-header">Date</th>
+                <th class="table-header">Utilisateur</th>
+                <th class="table-header">Début de session</th>
+                <th class="table-header">Fin de session</th>
+                <th class="table-header">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach(reservation=> { %>
+                <tr class="table-row">
+                    <td class="table-text">
+                        <%= computers.find(computer=> computer._id === reservation.ID_computer).label %>
+                    </td>
+                    <td class="table-text">
+                        <%= reservation.date.slice(0, 10) %>
+                    </td>
+                    <td class="table-text">
+                        <%= users.find(user=> user._id === reservation.ID_user).name%>
+
+                    </td>
+                    <td class="table-text">
+                        <%= reservation.start %>
+                    </td>
+                    <td class="table-text">
+                        <%= reservation.end %>
+                    </td>
+                    <td class="table-actions">
+                        <div class="table-add"><img src="../img/icon-edit.png" width="10px" height="10px" alt="add">
+                        </div>
+                        <div onclick="deleteRessource('reservation', '<%=reservation._id%>')" class="table-delete">
+                            <img src="../img/icon-add.png" style="transform:rotate(45deg)" width="12px"
+                                height="12px" alt="delete"></div>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>
+
+    <!-- CREATE COMPUTER -->
+    <div class="modal-computer_box">
+        <div class="modal-computer">
+            <div class="modal-computer_title">Ajouter un poste</div>
+            <form class="modal-computer_form" action="http://localhost:1234/api/computers" method="post">
+                <label class="computer-form_label1 modal-form_label" for="computer-label">Nom du poste</label>
+                <input class="computer-form_input1 modal-form_input" type="text" name="label" placeholder="Poste X"
+                    id="computer-label">
+                <label class="computer-form_label2 modal-form_label" for="computer-type">Type du poste</label>
+                <select class="computer-form_input2 modal-form_input" name="type" id="computer-type">
+                    <option value="gaming">Gaming</option>
+                    <option value="etude">Etudes</option>
+                </select>
+                <div class="computer-form_actions">
+                    <div class="computer-form_cancel">Annuler</div>
+                    <input class="computer-form_submit" type="submit" value="Créer">
+                </div>
+                <input type="hidden" value="fromClient" name="fromClient">
+            </form>
+            <div class="modal-computer_close" onclick="closeModal('computer')">X</div>
+        </div>
+    </div>
+
+    <!-- CREATE USER -->
+    <div class="modal-user_box">
+        <div class="modal-user">
+            <div class="modal-user_title">Ajouter un utilisateur</div>
+            <form class="modal-user_form" action="http://localhost:1234/api/users" method="post">
+                <label class="user-form_label1 modal-form_label" for="user-name">Prénom et Nom</label>
+                <input class="user-form_input1 modal-form_input" type="text" name="name" placeholder="John DOE"
+                    id="user-name">
+                <label class="user-form_label2 modal-form_label" for="user-email">Adresse Email</label>
+                <input type="email" class="user-form_input2 modal-form_input" name="email" id="user-email"
+                    placeholder="johndoe@email.com">
+                <div class="user-form_actions">
+                    <input class="user-form_submit" type="submit" value="Créer">
+                    <div class="user-form_cancel">Annuler</div>
+
+                </div>
+                <input type="hidden" value="fromClient" name="fromClient">
+            </form>
+            <div class="modal-user_close" onclick="closeModal('user')">X</div>
+        </div>
+    </div>
         </div>
     </div>
 
@@ -147,49 +221,6 @@
         </div>
     </div>
     
-    <!-- CREATE COMPUTER -->
-    <div class="modal-computer_box">
-        <div class="modal-computer">
-            <div class="modal-computer_title">Ajouter un poste</div>
-            <form class="modal-computer_form" action="http://localhost:1234/api/computers" method="post">
-                <label class="computer-form_label1 modal-form_label" for="computer-label">Nom du poste</label>
-                <input class="computer-form_input1 modal-form_input" type="text" name="label" placeholder="Poste X"
-                    id="computer-label">
-                <label class="computer-form_label2 modal-form_label" for="computer-type">Type du poste</label>
-                <select class="computer-form_input2 modal-form_input" name="type" id="computer-type">
-                    <option value="gaming">Gaming</option>
-                    <option value="etude">Etudes</option>
-                </select>
-                <div class="computer-form_actions">
-                    <div class="computer-form_cancel">Annuler</div>
-                    <input class="computer-form_submit" type="submit" value="Créer">
-                </div>
-                <input type="hidden" value="fromClient" name="fromClient">
-            </form>
-            <div class="modal-computer_close" onclick="closeModal('computer')">X</div>
-        </div>
-    </div>
-
-    <!-- CREATE USER -->
-    <div class="modal-user_box">
-        <div class="modal-user">
-            <div class="modal-user_title">Ajouter un utilisateur</div>
-            <form class="modal-user_form" action="http://localhost:1234/api/users" method="post">
-                <label class="user-form_label1 modal-form_label" for="user-name">Prénom et Nom</label>
-                <input class="user-form_input1 modal-form_input" type="text" name="name" placeholder="John DOE"
-                    id="user-name">
-                <label class="user-form_label2 modal-form_label" for="user-email">Adresse Email</label>
-                <input type="email" class="user-form_input2 modal-form_input" name="email" id="user-email" placeholder="johndoe@email.com">
-                <div class="user-form_actions">
-                    <input class="user-form_submit" type="submit" value="Créer">
-                    <div class="user-form_cancel">Annuler</div>
-
-                </div>
-                <input type="hidden" value="fromClient" name="fromClient">
-            </form>
-            <div class="modal-user_close" onclick="closeModal('user')">X</div>
-        </div>
-    </div>
     <script>
         function closeModal(ressource) {
             let modal = document.getElementsByClassName(`modal-${ressource}`)[0]
@@ -204,8 +235,11 @@
         function deleteRessource(ressource, id) {
             let api_uri = `http://localhost:1234/api/${ressource}s/${id}`
             try {
-                fetch(api_uri, {method : 'DELETE'})
-                .then(() => alert(`${ressource} supprimé`))
+                fetch(api_uri, { method: 'DELETE' })
+                    .then(() => {
+                        alert(`${ressource} supprimé`)
+                        document.location.reload();
+                    })
             } catch (error) {
                 alert('error')
             }
